@@ -1,6 +1,9 @@
-# Yu Wan (wanyuac@gmail.com), 4-19 Oct 2015
-# Simulate and plot probabilities in a Fisher's exact test
-# License: GNU GPL version 2.0
+#' @title Simulating and plotting probabilities in a Fisher's exact test
+#' @author Yu Wan (\email{wanyuac@@gmail.com})
+#' @export
+# Copyright 2018 Yu Wan
+# Licensed under the Apache License, Version 2.0
+# Editions: 4-19 Oct 2015
 
 #========== DEFINE THE FUNCTION ==========
 plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbability_", font.size = 1.5, w = 1200, h = 1000) {
@@ -10,7 +13,7 @@ plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbabil
   cat("n(A): ", r1, "\n", sep = "")
   cat("n(B): ", c1, "\n", sep = "")
   cat("sample size: ", n, "\n", sep = "")
-  
+
   test.n <- min(r1, c1)
   accum.p <- exact.p <- OR <- numeric(test.n + 1)  # numeric(test.n + 1) includes a == 0
   denominator <- choose(n, c1)
@@ -24,11 +27,11 @@ plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbabil
     cat("a = ", a, ", OR = ", OR[a + 1], ", P = ", accum.p[a + 1], "\n", sep = "")
   }
   x.series <- seq(from = 0, to = test.n, by = 1)
-  
+
   png(filename = paste(prefix, paste(r1, c1, n, sep = "_"), ".png", sep = ""), width = w, height = h)
   if (panels == 3) {
     par(mfrow = c(2, 2), mar = c(4, 4.5, 4, 4))  # a two-by-two grid for plotting
-    
+
     # PLOT EXACT P VALUES
     plot(x = x.series, y = exact.p, xlab = "a", ylab = "p", main = "Individual probabilities",
          cex.lab = font.size, cex.axis = font.size, cex.main = font.size + 0.5)
@@ -42,7 +45,7 @@ plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbabil
   } else {
     par(mfrow = c(1, 2), mar = c(4, 4.5, 4, 4))  # only a single row and two columns for plotting
   }
-  
+
   # PLOT ORs
   plot(x = x.series, y = OR, xlab = "a", ylab = "Odds ratio", main = "Odds ratios",
        cex.lab = font.size, cex.axis = font.size, cex.main = font.size + 0.5)
@@ -52,7 +55,7 @@ plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbabil
   abline(v = OR.one, col = "green", lty = 3)
   axis(side = 1, at = OR.one, cex.axis = font.size)
   cat("Number of negative associations: ", sum(OR < 1), "\n", sep = "")
-  
+
   # PLOT ACCUMULATED TWO-WAY P VALUES
   plot(x = x.series, y = accum.p, xlab = "a", ylab = "Two-sided P value", main = "Two-sided P values",
        cex.lab = font.size, cex.axis = font.size, cex.main = font.size + 0.5)
@@ -61,9 +64,9 @@ plotFishersP <- function(r1, c1, n, alpha, panels = 3, prefix = "FishersProbabil
   break.point <- which.min(abs(accum.p - alpha)) - 1  # the point closest to the thresold of P values
   abline(v = break.point, col = "green", lty = 3)
   axis(side = 1, at = break.point, cex.axis = font.size)
-  
+
   dev.off()
-  
+
   return(list(exact.p, accum.p))
 }
 
