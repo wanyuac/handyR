@@ -1,5 +1,5 @@
 # handyR  
-This repository provides R functions for statistical analysis.
+This repository provides R functions for statistical analysis. It was called R_toolkit and built in 2015. I converted it into a package on 4 Aug 2018 to simplify its use. I also renamed it to make it easier to type and remember.
 
 ## A list of scripts
 * [makeNamedList.R](#makeNamedList)
