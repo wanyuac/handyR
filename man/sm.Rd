@@ -6,6 +6,9 @@
 \usage{
 sm(m, start = NULL, end)
 }
+\description{
+Show a diagonal matrix m[start : end, start : end].
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

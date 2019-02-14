@@ -21,6 +21,9 @@ d <- subsetDfCon(subject = x, conditions = y, col.subject = c("a1", "a2), col.co
 x[, 2] will be searched for values in y[, 3], for example:
 d <- subsetDfCon(subject = x, conditions = y, col.subject = c(1, 2, 3), col.con = c(1, 3, 5))}
 }
+\description{
+Taking a subset of a data frame in accordance with one or more conditions provided in the second data frame.
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

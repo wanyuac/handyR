@@ -5,16 +5,17 @@
 \title{Making a scatter plot of x against y, colour coded by z.}
 \usage{
 scatterPlot(x, y, z, x.bg = NA, y.bg = NA, z.bg = NA, log = "both",
-  log.base = 10, replace.zero = 1e-05, breaks.min = 0, breaks.max = 1,
-  breaks.n = 51, col.grad = c("blue", "green", "red"), log.z = FALSE,
-  log.z.base = 10, output = "plot.png", w = 800, h = 640,
-  title = "Y~X", x.lab = "X", y.lab = "Y", cex.main = 1.5,
-  cex.lab = 1.5, cex.axis = 1.5, x.extension = c(0, 0),
-  y.extension = c(0, 0), margin = c(4.5, 4.5, 3, 2), joint.col = FALSE,
-  col.bg = "grey", pch.bg = 1, cex.bg = 1, pch = 19, cex = 1,
-  show.range = FALSE, x.range = NA, x.bg.range = NA, range.pch = ".",
-  cex.range = 1, add.line = FALSE, line.a = NULL, line.b = NULL,
-  line.h = NULL, line.v = NULL, line.style = 3, line.col = "grey",
+  log.base = 10, replace.zero = 1e-05, breaks.min = 0,
+  breaks.max = 1, breaks.n = 51, col.grad = c("blue", "green",
+  "red"), log.z = FALSE, log.z.base = 10, output = "plot.png",
+  w = 800, h = 640, title = "Y~X", x.lab = "X", y.lab = "Y",
+  cex.main = 1.5, cex.lab = 1.5, cex.axis = 1.5, x.extension = c(0,
+  0), y.extension = c(0, 0), margin = c(4.5, 4.5, 3, 2),
+  joint.col = FALSE, col.bg = "grey", pch.bg = 1, cex.bg = 1,
+  pch = 19, cex = 1, show.range = FALSE, x.range = NA,
+  x.bg.range = NA, range.pch = ".", cex.range = 1,
+  add.line = FALSE, line.a = NULL, line.b = NULL, line.h = NULL,
+  line.v = NULL, line.style = 3, line.col = "grey",
   turnoff.dev = TRUE)
 }
 \arguments{

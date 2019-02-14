@@ -6,6 +6,9 @@
 \usage{
 maxRange(v1, v2)
 }
+\description{
+Obtain the maximum range comprising two numeric vectors v1 and v2
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

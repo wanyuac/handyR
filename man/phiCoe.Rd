@@ -6,6 +6,9 @@
 \usage{
 phiCoe(x, y = NULL)
 }
+\description{
+Calculating a phi association coefficient from two binary variables.
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

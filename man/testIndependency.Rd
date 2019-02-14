@@ -6,6 +6,9 @@
 \usage{
 testIndependency(m, method = "chisq", alt = "two.sided")
 }
+\description{
+Testing the independency of two variables according to a contingency table
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

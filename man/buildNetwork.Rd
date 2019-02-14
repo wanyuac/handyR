@@ -6,6 +6,9 @@
 \usage{
 buildNetwork(df, w)
 }
+\description{
+Generating a list for construction a network using the function forceNetwork from the networkD3 package
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

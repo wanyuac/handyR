@@ -12,6 +12,9 @@ makeNamedList(names.1 = NA, names.2 = NA)
 \item{names.2:}{The second vector of characters as names for each level of the list.
 e.g., an element in such a list can be assessed using x[["L1"]][["L2"]].}
 }
+\description{
+Returns a one- or two-dimensional list with names for each dimension.
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }

@@ -6,6 +6,9 @@
 \usage{
 matrixCutoff(m, cutoff, comp = ">", new.val = 0)
 }
+\description{
+Resets a value in an input matrix if it is smaller/greater than the threshold.
+}
 \author{
 Yu Wan (\email{wanyuac@gmail.com})
 }
