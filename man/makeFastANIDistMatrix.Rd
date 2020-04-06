@@ -4,12 +4,15 @@
 \alias{makeFastANIDistMatrix}
 \title{Make a distance matrix from FastANI output (tab-delimited file)}
 \usage{
-makeFastANIDistMatrix(f, keep_asym = FALSE)
+makeFastANIDistMatrix(f, keep_asym = FALSE, frac = FALSE)
 }
 \arguments{
 \item{f}{Path to the tab-delimited output file of FastANI}
 
 \item{keep_asym}{A logical flag specifying whether to keep the original asymmetric distance matrix.}
+
+\item{frac}{A logical flag specifying whether to convert percentages to decimal fractions. This option
+does not affect the tree topology as the change is proportional.}
 }
 \value{
 One or two n-by-n distance matrices (depending on keep_asm), where n denotes the number of genomes.

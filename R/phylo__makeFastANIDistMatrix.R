@@ -2,6 +2,8 @@
 #' @description This function coverts a FastANI output into a distance matrix.
 #' @param f Path to the tab-delimited output file of FastANI
 #' @param keep_asym A logical flag specifying whether to keep the original asymmetric distance matrix.
+#' @param frac A logical flag specifying whether to convert percentages to decimal fractions. This option
+#' does not affect the tree topology as the change is proportional.
 #' @return One or two n-by-n distance matrices (depending on keep_asm), where n denotes the number of genomes.
 #' @author Yu Wan (\email{wanyuac@@126.com})
 #' @export
@@ -10,13 +12,21 @@
 # Licensed under the Apache License, Version 3.0
 # Publication: 6 April 2020
 
-makeFastANIDistMatrix <- function(f, keep_asym = FALSE) {
+makeFastANIDistMatrix <- function(f, keep_asym = FALSE, frac = FALSE) {
     # Initiation
     ani <- read.delim(file = f, header = FALSE, sep = "\t", stringsAsFactors = FALSE)[, 1 : 3]
     names(ani) <- c("Query", "Reference", "ANI")
     ids <- sort(union(ani$Query, ani$Reference), decreasing = FALSE)
     ani$D <- 100 - ani$ANI  # Calculate distances from ANIs
     ani <- ani[, -3]  # Remove the column "ANI"
+
+    if (frac) {
+        ani$D <- ani$D / 100  # Convert percentages to decimal fractions
+        precision <- 6  # Number of decimals to keep
+    } else {
+        precision <- 4  # The same as FastANI
+    }
+
     n <- length(ids)
     M <- matrix(data = NA, nrow = n, ncol = n, dimnames = list(ids, ids))
     diag(M) <- 0
@@ -42,7 +52,7 @@ makeFastANIDistMatrix <- function(f, keep_asym = FALSE) {
         for (j in (i + 1) : n) {
             val_up <- M[i, j]  # The value in the upper triangle
             val_lo <- M[j, i]  # The value in the lower triangle
-            v <- round((val_up + val_lo) / 2, digits = 4)  # The same precision as FastANI
+            v <- round((val_up + val_lo) / 2, digits = precision)  # The same precision as FastANI (after dividing values by 100)
             M[i, j] <- v
             M[j, i] <- v
         }
