@@ -34,7 +34,7 @@ triangleToSquareMatrix <- function(d, diag_val = NA, sort_id = FALSE, sort_decre
     }
 
     # Populate the matrix
-    for (i in 1 : n) {
+    for (i in 1 : nrow(d)) {
         r <- d[i, ]
         x <- d$x
         y <- d$y
