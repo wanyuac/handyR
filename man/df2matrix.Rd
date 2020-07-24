@@ -4,8 +4,7 @@
 \alias{df2matrix}
 \title{Coverts a dataframe that corresponds to either the upper/lower triangle in a matrix into a matrix.}
 \usage{
-df2matrix(df, diag = 1, dimension = NULL, symmetric = FALSE,
-  replace.na = NA)
+df2matrix(df, diag = 1, dimension = NULL, symmetric = FALSE, replace.na = NA)
 }
 \description{
 Variables in the data frame: c(name1, name2, value)

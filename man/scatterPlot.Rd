@@ -4,19 +4,54 @@
 \alias{scatterPlot}
 \title{Making a scatter plot of x against y, colour coded by z.}
 \usage{
-scatterPlot(x, y, z, x.bg = NA, y.bg = NA, z.bg = NA, log = "both",
-  log.base = 10, replace.zero = 1e-05, breaks.min = 0,
-  breaks.max = 1, breaks.n = 51, col.grad = c("blue", "green",
-  "red"), log.z = FALSE, log.z.base = 10, output = "plot.png",
-  w = 800, h = 640, title = "Y~X", x.lab = "X", y.lab = "Y",
-  cex.main = 1.5, cex.lab = 1.5, cex.axis = 1.5, x.extension = c(0,
-  0), y.extension = c(0, 0), margin = c(4.5, 4.5, 3, 2),
-  joint.col = FALSE, col.bg = "grey", pch.bg = 1, cex.bg = 1,
-  pch = 19, cex = 1, show.range = FALSE, x.range = NA,
-  x.bg.range = NA, range.pch = ".", cex.range = 1,
-  add.line = FALSE, line.a = NULL, line.b = NULL, line.h = NULL,
-  line.v = NULL, line.style = 3, line.col = "grey",
-  turnoff.dev = TRUE)
+scatterPlot(
+  x,
+  y,
+  z,
+  x.bg = NA,
+  y.bg = NA,
+  z.bg = NA,
+  log = "both",
+  log.base = 10,
+  replace.zero = 1e-05,
+  breaks.min = 0,
+  breaks.max = 1,
+  breaks.n = 51,
+  col.grad = c("blue", "green", "red"),
+  log.z = FALSE,
+  log.z.base = 10,
+  output = "plot.png",
+  w = 800,
+  h = 640,
+  title = "Y~X",
+  x.lab = "X",
+  y.lab = "Y",
+  cex.main = 1.5,
+  cex.lab = 1.5,
+  cex.axis = 1.5,
+  x.extension = c(0, 0),
+  y.extension = c(0, 0),
+  margin = c(4.5, 4.5, 3, 2),
+  joint.col = FALSE,
+  col.bg = "grey",
+  pch.bg = 1,
+  cex.bg = 1,
+  pch = 19,
+  cex = 1,
+  show.range = FALSE,
+  x.range = NA,
+  x.bg.range = NA,
+  range.pch = ".",
+  cex.range = 1,
+  add.line = FALSE,
+  line.a = NULL,
+  line.b = NULL,
+  line.h = NULL,
+  line.v = NULL,
+  line.style = 3,
+  line.col = "grey",
+  turnoff.dev = TRUE
+)
 }
 \arguments{
 \item{x}{explanatory variable of your interest to be plotted.}
@@ -66,7 +101,7 @@ For example, x.extension = c(-1, 1).}
 
 \item{joint.col}{whether to colour all data points with the same colour gradient. Remember to check the break.min and breaks.max when you are using this option.}
 
-\item{col.bg}{pch.bg, cex.bg configure the colour, style and size of the background data points (Y.bg ~ X.bg).}
+\item{col.bg}{will be overridden if joint.col == TRUE.}
 
 \item{pch}{and cex define the point style and size of data points of interests (Y ~ X).}
 
@@ -85,8 +120,6 @@ For example, x.extension = c(-1, 1).}
 \item{line.col}{the colour of the guideline.}
 
 \item{turnoff.dev}{not to call dev.off() if turnoff.dev = FALSE so that a user can add more features to the plot.}
-
-\item{col.bg}{will be overridden if joint.col == TRUE.}
 
 \item{line.a/b/h/v}{four arguments (a, b, h, v) to be passed to R's build-in function abline.}
 }

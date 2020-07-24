@@ -5,8 +5,13 @@
 \title{Calculate association or similarity coefficient for two binary variables
 and test for their independence.}
 \usage{
-getBinaryCoefficient(x, y, type = "Jaccard", hypo.test = "chisq",
-  alt = "two.sided")
+getBinaryCoefficient(
+  x,
+  y,
+  type = "Jaccard",
+  hypo.test = "chisq",
+  alt = "two.sided"
+)
 }
 \description{
 A Jaccard similarity or phi association coefficient is computed

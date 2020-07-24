@@ -3,9 +3,9 @@ Type: Package
 Title: Handy functions for R programming.
 Version: 0.0.1
 Author: Yu Wan
-Maintainer: Yu Wan <wanyuac@gmail.com>
+Maintainer: Yu Wan <wanyuac@126.com>
 Description: This package provides functions for general R programming.
 License: Apache License, Version 2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

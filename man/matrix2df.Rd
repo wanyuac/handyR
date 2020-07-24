@@ -4,8 +4,7 @@
 \alias{matrix2df}
 \title{Coverting the upper triangle of a symmetric numeric matrix into a data frame of three variables.}
 \usage{
-matrix2df(m, diag = FALSE, named = FALSE, small = TRUE,
-  val.class = "numeric")
+matrix2df(m, diag = FALSE, named = FALSE, small = TRUE, val.class = "numeric")
 }
 \description{
 For speed, this function does not check symetry of the input matrix. It is a user's responsibility

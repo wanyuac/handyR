@@ -4,9 +4,17 @@
 \alias{plotFishersP}
 \title{Simulating and plotting probabilities in a Fisher's exact test}
 \usage{
-plotFishersP(r1, c1, n, alpha, panels = 3,
-  prefix = "FishersProbability_", font.size = 1.5, w = 1200,
-  h = 1000)
+plotFishersP(
+  r1,
+  c1,
+  n,
+  alpha,
+  panels = 3,
+  prefix = "FishersProbability_",
+  font.size = 1.5,
+  w = 1200,
+  h = 1000
+)
 }
 \description{
 Simulating and plotting probabilities in a Fisher's exact test
