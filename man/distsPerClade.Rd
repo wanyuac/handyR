@@ -4,10 +4,12 @@
 \alias{distsPerClade}
 \title{Summarising phylogenetic distances for each clade in a rooted bifurcating phylogenetic tree}
 \usage{
-distsPerClade(tr, dec = 8)
+distsPerClade(tr, m, dec = 8)
 }
 \arguments{
 \item{tr}{An input bifurcating phylogenetic tree}
+
+\item{m}{A distance matrix with row and column names matching to tip labels of the input tree}
 
 \item{dec}{Number of decimals kept for distance summaries}
 }
