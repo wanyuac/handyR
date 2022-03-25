@@ -10,9 +10,9 @@
 #' @export
 # (C) Copyright 2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 19 Feb 2022; last update: 3/3/2022
+# Release: 19 Feb 2022; last update: 25 Mar 2022
 
-distsPerClade <- function(tr, m, dec = 8) {
+distsPerClade <- function(tr, m = NULL, dec = 8) {
     require(ape)
     require(phytools)
     if (! is.rooted(tr)) {
@@ -29,11 +29,11 @@ distsPerClade <- function(tr, m, dec = 8) {
 
 .summariseDistsPerClade <- function(i, tr, m) {  # i: index of an internal node; tr: a phylo object; m: a distance matrix
     c <- ape::extract.clade(phy = tr, node = i)  # The clade is a sub-tree rooted on the chosen internal node.
+    samples <- c$tip.label
     if (is.null(m)) {
         m_c <- ape::cophenetic.phylo(c)
     } else {
-        samples <- c$tip.label
-        m_c <- m[samples, samples]
+        m_c <- m[samples, samples]  # Extract distances from user's distance matrix
     }
     diag(m_c) <- NA  # Mask diagnoal entries
     return(data.frame(Node_in = i, Taxa_num = length(samples), D_min = min(m_c, na.rm = TRUE),

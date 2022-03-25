@@ -4,7 +4,7 @@
 \alias{distsPerClade}
 \title{Summarising phylogenetic distances for each clade in a rooted bifurcating phylogenetic tree}
 \usage{
-distsPerClade(tr, m, dec = 8)
+distsPerClade(tr, m = NULL, dec = 8)
 }
 \arguments{
 \item{tr}{An input bifurcating phylogenetic tree}
