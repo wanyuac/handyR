@@ -4,19 +4,21 @@
 #' @param keep_asym A logical flag specifying whether to keep the original asymmetric distance matrix.
 #' @param frac A logical flag specifying whether to convert percentages to decimal fractions. This option
 #' does not affect the tree topology as the change is proportional.
+#' @param suffix Filename extension of input FASTA files for FastANI, such as fna and fasta.
 #' @return One or two n-by-n distance matrices (depending on keep_asm), where n denotes the number of genomes.
 #' @author Yu Wan (\email{wanyuac@@126.com})
 #' @export
 #
 # Copyright 2020 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 3.0
-# Publication: 6 April 2020
+# Publication: 6 April 2020; last update: 24 May 2022
 
-makeFastANIDistMatrix <- function(f, keep_asym = FALSE, frac = FALSE) {
+makeFastANIDistMatrix <- function(f, keep_asym = FALSE, frac = FALSE, suffix = "fasta") {
     # Initiation
     ani <- read.delim(file = f, header = FALSE, sep = "\t", stringsAsFactors = FALSE)[, 1 : 3]
     names(ani) <- c("Query", "Reference", "ANI")
-    ids <- sort(union(ani$Query, ani$Reference), decreasing = FALSE)
+    ani$Query <- sapply(ani$Query, .extractSampleName, suffix)
+    ani$Reference <- sapply(ani$Reference, .extractSampleName, suffix)
     ani$D <- 100 - ani$ANI  # Calculate distances from ANIs
     ani <- ani[, -3]  # Remove the column "ANI"
 
@@ -27,6 +29,7 @@ makeFastANIDistMatrix <- function(f, keep_asym = FALSE, frac = FALSE) {
         precision <- 4  # The same as FastANI
     }
 
+    ids <- sort(union(ani$Query, ani$Reference), decreasing = FALSE)
     n <- length(ids)
     M <- matrix(data = NA, nrow = n, ncol = n, dimnames = list(ids, ids))
     diag(M) <- 0
@@ -66,4 +69,11 @@ makeFastANIDistMatrix <- function(f, keep_asym = FALSE, frac = FALSE) {
     }
 
     return(out)
+}
+
+.extractSampleName <- function(fasta_path, suffix) {
+    fields <- unlist(strsplit(x = fasta_path, split = "/", fixed = TRUE))
+    f <- fields[length(fields)]
+    f <- gsub(pattern = paste0(".", suffix), replacement = "", x = f, fixed = TRUE)
+    return(f)
 }

@@ -4,7 +4,7 @@
 \alias{makeFastANIDistMatrix}
 \title{Make a distance matrix from FastANI output (tab-delimited file)}
 \usage{
-makeFastANIDistMatrix(f, keep_asym = FALSE, frac = FALSE)
+makeFastANIDistMatrix(f, keep_asym = FALSE, frac = FALSE, suffix = "fasta")
 }
 \arguments{
 \item{f}{Path to the tab-delimited output file of FastANI}
@@ -13,6 +13,8 @@ makeFastANIDistMatrix(f, keep_asym = FALSE, frac = FALSE)
 
 \item{frac}{A logical flag specifying whether to convert percentages to decimal fractions. This option
 does not affect the tree topology as the change is proportional.}
+
+\item{suffix}{Filename extension of input FASTA files for FastANI, such as fna and fasta.}
 }
 \value{
 One or two n-by-n distance matrices (depending on keep_asm), where n denotes the number of genomes.

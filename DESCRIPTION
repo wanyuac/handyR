@@ -1,7 +1,7 @@
 Package: handyR
 Type: Package
 Title: Handy functions for R programming.
-Version: 0.0.1
+Version: 0.0.2
 Author: Yu Wan
 Maintainer: Yu Wan <wanyuac@126.com>
 Description: This package provides functions for general R programming.
@@ -11,4 +11,4 @@ LazyData: true
 Imports:
     ape (>= 4.1),
     phytools (>= 0.6-00)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
