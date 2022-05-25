@@ -9,7 +9,7 @@
 #' @author Yu Wan (\email{wanyuac@@126.com})
 #' @export
 #
-# Copyright 2020 Yu Wan <wanyuac@126.com>
+# Copyright 2020-2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 3.0
 # Publication: 6 April 2020; last update: 24 May 2022
 
