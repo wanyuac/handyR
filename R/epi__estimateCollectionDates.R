@@ -1,11 +1,12 @@
 #' @title Estimating dates of sample collection
 #' @description This function estimates the range of collection dates "YYYY-MM" for each bacterial isolate based on a four-column data frame.
 #' @param dates A data frame of four columns: Isolate, Collection_date (YYYY-MM-DD, YYYY, YYYY-MM), Collection_date_format (Y, YM, YMD), Receipt_date (YYYY-MM-DD).
+#' Unknown dates must be NA.
 #' @return A data frame of the minimum and maximum collection dates of each isolate.
 #' @export
 # (C) Copyright 2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 17 August 2022; last update: 17 August 2022
+# Release: 17 August 2022; last update: 20 August 2022
 
 estimateCollectionDates <- function(dates) {
     dates <- subset(dates, Collection_date_format %in% c("YMD", "YM", "Y"))
@@ -45,10 +46,20 @@ estimateCollectionDates <- function(dates) {
     } else {  # c_type = "Y"
         d_min <- paste(c, "01", "01", sep = "-")
         d_max <- paste(c, "12", "31", sep = "-")
+        if (use_receipt_date) {
+            receipt_year <- year(as.Date(r, format = "%Y-%m-%d"))
+            collection_year <- as.integer(c)
+            if (collection_year == receipt_year) {
+                d_max <- r
+            } else if (collection_year > receipt_year) {  # An impossible scenario indicating errors in dates
+                print(paste("Error: receipt year of isolate", i, "was earlier than the collection year. Reset the date range to NA.", sep = " "))
+                d_min <- d_max <- NA
+            }
+        }
     }
 
     # Validity check ###############
-    if (use_receipt_date) {
+    if (use_receipt_date && (! is.na(d_min))) {
         days <- as.integer(difftime(time1 = r, time2 = d_min))  # days = time1 - time2. Normally, d_min always <= r.
         if (days < 0) {  # Suggests an error in dates: the isolate was received before its possible earliest collection date.
             print(paste("Error: receipt date of isolate", i, "was earlier than the earliest possible collection date. Reset the date range to NA.", sep = " "))
@@ -56,6 +67,6 @@ estimateCollectionDates <- function(dates) {
         }
     }
 
-    return(data.frame(Isolate = i, Collection_date = c, Collection_date_type = c_type, Collection_date_min = d_min,
-                      Collection_date_max = d_max, Receipt_date = r, stringsAsFactors = FALSE))
+    return(data.frame(Isolate = i, Collection_date = c, Collection_date_format = c_type, Receipt_date = r,
+                      Collection_date_min = d_min, Collection_date_max = d_max, stringsAsFactors = FALSE))
 }
