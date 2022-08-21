@@ -1,17 +1,17 @@
 #' @title Estimating dates of sample collection
 #' @description This function estimates the range of collection dates "YYYY-MM" for each bacterial isolate based on a four-column data frame.
-#' @param dates A data frame of four columns: Isolate, Collection_date (YYYY-MM-DD, YYYY, YYYY-MM), Collection_date_format (Y, YM, YMD), Receipt_date (YYYY-MM-DD).
+#' @param dates A data frame of four columns: Isolate, Collection_date (YYYY-MM-DD, YYYY, YYYY-MM), Collection_date_precision (Y, YM, YMD), Receipt_date (YYYY-MM-DD).
 #' Unknown dates must be NA.
 #' @return A data frame of the minimum and maximum collection dates of each isolate.
 #' @export
 # (C) Copyright 2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 17 August 2022; last update: 20 August 2022
+# Release: 17 August 2022; last update: 21 August 2022
 
 estimateCollectionDates <- function(dates) {
-    dates <- subset(dates, Collection_date_format %in% c("YMD", "YM", "Y"))
+    dates <- subset(dates, Collection_date_precision %in% c("YMD", "YM", "Y"))
     if (nrow(dates) > 0) {
-        date_ranges <- do.call(rbind.data.frame, mapply(.dateRangesPerIsolate, dates$Isolate, dates$Collection_date, dates$Collection_date_format, dates$Receipt_date,
+        date_ranges <- do.call(rbind.data.frame, mapply(.dateRangesPerIsolate, dates$Isolate, dates$Collection_date, dates$Collection_date_precision, dates$Receipt_date,
                                                         MoreArgs = list(MONTH_DAYS = list("common year" = c(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31),
                                                                                           "leap year" = c(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31))),
                                                         SIMPLIFY = FALSE, USE.NAMES = FALSE))
@@ -39,7 +39,7 @@ estimateCollectionDates <- function(dates) {
         d_min <- paste(c, "01", sep = "-")  # YYYY-MM-01
         d_max <- paste(c, as.character(month_len), sep = "-")
         if (use_receipt_date) {
-            if (as.integer(difftime(time1 = d_max, time2 = r)) > 0) {  # The isolate was received by the lab earlier than the estimated latest day. Class of function difftime's output: "difftime".
+            if (as.integer(difftime(time1 = d_max, time2 = r, units = "days")) > 0) {  # The isolate was received by the lab earlier than the estimated latest day. Class of function difftime's output: "difftime".
                 d_max <- r
             }
         }
@@ -60,13 +60,13 @@ estimateCollectionDates <- function(dates) {
 
     # Validity check ###############
     if (use_receipt_date && (! is.na(d_min))) {
-        days <- as.integer(difftime(time1 = r, time2 = d_min))  # days = time1 - time2. Normally, d_min always <= r.
+        days <- as.integer(difftime(time1 = r, time2 = d_min, units = "days"))  # days = time1 - time2. Normally, d_min always <= r.
         if (days < 0) {  # Suggests an error in dates: the isolate was received before its possible earliest collection date.
             print(paste("Error: receipt date of isolate", i, "was earlier than the earliest possible collection date. Reset the date range to NA.", sep = " "))
             d_min <- d_max <- NA
         }
     }
 
-    return(data.frame(Isolate = i, Collection_date = c, Collection_date_format = c_type, Receipt_date = r,
+    return(data.frame(Isolate = i, Collection_date = c, Collection_date_precision = c_type, Receipt_date = r,
                       Collection_date_min = d_min, Collection_date_max = d_max, stringsAsFactors = FALSE))
 }
