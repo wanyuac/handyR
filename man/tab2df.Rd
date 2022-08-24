@@ -4,12 +4,14 @@
 \alias{tab2df}
 \title{Table to data frame}
 \usage{
-tab2df(t, new_names = NA)
+tab2df(t, new_names = NA, srt = NA)
 }
 \arguments{
 \item{t}{Input table}
 
 \item{new_names}{A character vector of two elements for new column names. Default: Name, Count.}
+
+\item{srt}{Sort the output data frame by its second column. Legit values: NA, "decreasing", and "increasing".}
 }
 \description{
 Converts a table from function "table" to a two column data frame.
