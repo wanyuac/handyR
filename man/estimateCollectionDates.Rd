@@ -7,12 +7,12 @@
 estimateCollectionDates(dates)
 }
 \arguments{
-\item{dates}{A data frame of four columns: Isolate, Collection_date (YYYY-MM-DD, YYYY, YYYY-MM), Collection_date_precision (Y, YM, YMD), Receipt_date (YYYY-MM-DD).
-Unknown dates must be NA.}
+\item{dates}{A data frame of five columns: Isolate, Collection_date (YYYY-MM-DD, YYYY, YYYY-MM), Collection_date_precision (Y, YM, YMD),
+Receipt_date (YYYY-MM-DD), Date_of_birth (YYYY-MM-DD; set to NA if this information is not applicable or available). Unknown dates must be NA.}
 }
 \value{
 A data frame of the minimum and maximum collection dates of each isolate.
 }
 \description{
-This function estimates the range of collection dates "YYYY-MM" for each bacterial isolate based on a four-column data frame.
+This function estimates the range of collection dates "YYYY-MM" for each bacterial isolate based on a five-column data frame.
 }
