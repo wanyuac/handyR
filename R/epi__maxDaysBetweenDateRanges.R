@@ -3,10 +3,11 @@
 #' @param dates A data frame containing three columns: Isolate, Collection_date_precision, Collection_date_min, Collection_date_max.
 #' @return A matrix of days between collection dates of each pair of isolates
 # @return A list of two elements: 1. a matrix 'Tm' of days; 2. a data frame 'Days' from the upper triangle of Tm, combining with date ranges of each isolate.
-#' @export
+#' @export maxDaysBetweenDateRanges
+#' @export `%-%`
 # (C) Copyright 2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 21 August 2022; last update: 21 August 2022
+# Release: 21 August 2022; last update: 28 August 2022
 
 maxDaysBetweenDateRanges <- function(dates) {
     dates <- dates[, c("Isolate", "Collection_date_precision", "Collection_date_min", "Collection_date_max")]
@@ -39,7 +40,7 @@ maxDaysBetweenDateRanges <- function(dates) {
     return(Tm)
 }
 
-`%-%` <- function(t1, t2) as.integer(difftime(time1 = t1, time2 = t2, units = "days"))
+`%-%` <- function(t1, t2) as.integer(round(difftime(time1 = t1, time2 = t2, units = "days"), digits = 0))
 
 .maxDays <- function(te_i, tl_i, te_j, tl_j, p_i, p_j) {
     # te_i, te_j: earliest possible collection date of isolates I and J, respectively
