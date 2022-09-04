@@ -7,7 +7,7 @@
 # Licensed under the Apache License, Version 2.0
 # Release: 26 Aug 2022; last update: 26 Aug 2022
 
-getMRCA <- function(tr_dated) {
+getMRCAdates <- function(tr_dated) {
     r <- tr_dated$CI[which.min(tr_dated$CI[, 1]), ]
     return(c("min" = r[1], "mean" = tr_dated$tree$root.time, "max" = r[2]))
 }
