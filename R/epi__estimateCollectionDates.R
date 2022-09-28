@@ -6,9 +6,10 @@
 #' @export
 # (C) Copyright 2022 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 17 August 2022; last update: 28 August 2022
+# Release: 17 August 2022; last update: 7 Sep 2022
 
 estimateCollectionDates <- function(dates) {
+    names(dates) <- c("Isolate", "Collection_date", "Collection_date_precision", "Receipt_date", "Date_of_birth")
     dates <- subset(dates, Collection_date_precision %in% c("YMD", "YM", "Y"))
     if (nrow(dates) > 0) {
         date_ranges <- do.call(rbind.data.frame, mapply(.dateRangesPerIsolate, dates$Isolate, dates$Collection_date, dates$Collection_date_precision, dates$Receipt_date, dates$Date_of_birth,
