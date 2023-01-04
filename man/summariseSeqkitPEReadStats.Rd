@@ -9,7 +9,7 @@ summariseSeqkitPEReadStats(
   ref_len = 5e+06,
   ext = ".fastq.gz",
   suf_R = FALSE,
-  srt = TRUE
+  srt = "increasing"
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ summariseSeqkitPEReadStats(
 
 \item{suf_R}{A logical value indicating whether 'R' is used in the filename suffices. For instance, suf_R = TRUE when read files are ended with '_R1.fastq.gz' and '_R2.fastq.gz'.}
 
-\item{srt}{A logical value indicating whether the output data frame will be sorted in a descending order for sequencing depths and isolate names.}
+\item{srt}{A string with values "decreasing", "increasing", or NULL (no sorting) indicating whether the output data frame will be sorted in a specific order for sequencing depths and isolate names.}
 }
 \value{
 A data frame with summary statistics including sequencing depths.
