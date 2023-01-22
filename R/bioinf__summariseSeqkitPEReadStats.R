@@ -10,11 +10,11 @@
 #' @export
 # (C) Copyright 2023 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 4 Jan 2023; last update: 4 Jan 2023.
+# Release: 4 Jan 2023; last update: 22 Jan 2023.
 
 summariseSeqkitPEReadStats <- function(rs, ref_len = 5e6, ext = ".fastq.gz", suf_R = FALSE, srt = "increasing") {
     names(rs)[1] <- "File"
-    rs$File <- gsub(pattern = ext, replacement = "", x = rs$File, fixed = TRUE)
+    rs$File <- gsub(pattern = ext, replacement = "", x = basename(rs$File), fixed = TRUE)
     trim_len <- ifelse(suf_R, 3, 2)  # suf_R = TRUE: "_R[1,2]"; otherwise, "_[1,2]"
     isolates <- unique(sapply(rs$File, function(x) substr(x, start = 1, stop = nchar(x) - trim_len), simplify = TRUE, USE.NAMES = FALSE))
     n <- length(isolates)
