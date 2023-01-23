@@ -1,6 +1,6 @@
 #' @title Summarising statistics of paired-end read sets
 #' @description This function summarises statistics from seqkit for paired-end read sets.
-#' @param rs Tab-delimited output (a TSV file) from command 'seqkit stats'
+#' @param tsv Tab-delimited output (a TSV file) from command 'seqkit stats'
 #' @param ref_len Length of the reference genome in base pairs
 #' @param ext Filename extension of FASTQ files in the input TSV file. For example, '.fastq.gz' or '.fq.gz'.
 #' @param suf_R A logical value indicating whether 'R' is used in the filename suffices. For instance, suf_R = TRUE when read files are ended with '_R1.fastq.gz' and '_R2.fastq.gz'.
@@ -12,7 +12,8 @@
 # Licensed under the Apache License, Version 2.0
 # Release: 4 Jan 2023; last update: 22 Jan 2023.
 
-summariseSeqkitPEReadStats <- function(rs, ref_len = 5e6, ext = ".fastq.gz", suf_R = FALSE, srt = "increasing") {
+summariseSeqkitPEReadStats <- function(tsv, ref_len = 5e6, ext = ".fastq.gz", suf_R = FALSE, srt = "increasing") {
+    rs <- read.delim(file = tsv, stringsAsFactors = FALSE)
     names(rs)[1] <- "File"
     rs$File <- gsub(pattern = ext, replacement = "", x = basename(rs$File), fixed = TRUE)
     trim_len <- ifelse(suf_R, 3, 2)  # suf_R = TRUE: "_R[1,2]"; otherwise, "_[1,2]"
