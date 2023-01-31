@@ -5,7 +5,7 @@
 \title{Summarising statistics of paired-end read sets}
 \usage{
 summariseSeqkitPEReadStats(
-  rs,
+  tsv,
   ref_len = 5e+06,
   ext = ".fastq.gz",
   suf_R = FALSE,
@@ -13,7 +13,7 @@ summariseSeqkitPEReadStats(
 )
 }
 \arguments{
-\item{rs}{Tab-delimited output (a TSV file) from command 'seqkit stats'}
+\item{tsv}{Tab-delimited output (a TSV file) from command 'seqkit stats'}
 
 \item{ref_len}{Length of the reference genome in base pairs}
 
