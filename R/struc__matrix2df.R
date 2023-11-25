@@ -17,14 +17,14 @@ matrix2df <- function(m, diag = FALSE, named = FALSE, small = TRUE, val.class = 
 
     if (named) {
         ids <- colnames(m)  # assuming that row names = column names
-        init.id.class <- character
+        init.id.class <- character  # "character" is a function name here.
         if (sum(rownames(m) != ids) > 0) {
             print("Warning: rearranging rows to match column names.")
             m <- m[ids, ]
         }
     } else {
         ids <- 1 : ncol(m)  # use indices instead
-        init.id.class <- integer
+        init.id.class <- integer  # init.id.class is a synomyn of the "integer" function
     }
 
     if (val.class == "numeric") {
