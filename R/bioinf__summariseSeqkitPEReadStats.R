@@ -6,9 +6,9 @@
 #' @param suf_R A logical value indicating whether 'R' is used in the filename suffices. For instance, suf_R = TRUE when read files are ended with '_R1.fastq.gz' and '_R2.fastq.gz'.
 #' @param srt A string with values "decreasing", "increasing", or NULL (no sorting) indicating whether the output data frame will be sorted in a specific order for sequencing depths and isolate names.
 #' @return A data frame with summary statistics including sequencing depths.
-#' @author Yu Wan <wanyuac@@126.com>
+#' @author Yu Wan <wanyuac@@gmail.com>
 #' @export
-# (C) Copyright 2023 Yu Wan <wanyuac@126.com>
+# (C) Copyright 2023 Yu Wan <wanyuac@gmail.com>
 # Licensed under the Apache License, Version 2.0
 # Release: 4 Jan 2023; last update: 9 Apr 2024.
 

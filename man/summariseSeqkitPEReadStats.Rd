@@ -30,5 +30,5 @@ A data frame with summary statistics including sequencing depths.
 This function summarises statistics from seqkit for paired-end read sets.
 }
 \author{
-Yu Wan <wanyuac@126.com>
+Yu Wan <wanyuac@gmail.com>
 }

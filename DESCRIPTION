@@ -1,7 +1,7 @@
 Package: handyR
 Type: Package
 Title: Handy functions for R programming.
-Version: 0.0.6
+Version: 0.0.7
 Author: Yu Wan
 Maintainer: Yu Wan <wanyuac@126.com>
 Description: This package provides functions for general R programming.
