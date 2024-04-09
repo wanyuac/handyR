@@ -10,7 +10,7 @@
 #' @export
 # (C) Copyright 2023 Yu Wan <wanyuac@126.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 4 Jan 2023; last update: 22 Jan 2023.
+# Release: 4 Jan 2023; last update: 9 Apr 2024.
 
 summariseSeqkitPEReadStats <- function(tsv, ref_len = 5e6, ext = ".fastq.gz", suf_R = FALSE, srt = "increasing") {
     rs <- read.delim(file = tsv, stringsAsFactors = FALSE)
@@ -40,15 +40,18 @@ summariseSeqkitPEReadStats <- function(tsv, ref_len = 5e6, ext = ".fastq.gz", su
         r <- r[order(r$File, decreasing = FALSE), ]
         total_bases <- sum(r$sum_len)
         total_reads <- sum(r$num_seqs)
-        out <- data.frame(Isolate = i, Sum_len = total_bases, Read_num = total_reads,
+        # Note on 9 Apr 2024: removed 'N50 = paste(r$N50, collapse = ";")', 'Q3_len = paste(r$Q3, collapse = ";")' as they became optional in new seqkit versions.
+        out <- data.frame(Isolate = i,
+                          Sum_len = total_bases,
+                          Read_num = total_reads,
                           Depth = round(total_bases / ref_len, digits = 2),
-                          Max_len = paste(r$max_len, collapse = ";"), N50 = paste(r$N50, collapse = ";"),
+                          Max_len = paste(r$max_len, collapse = ";"),
                           Avg_len = round(total_bases / total_reads, digits = 0),
-                          Min_len = paste(r$min_len, collapse = ";"), Q3_len = paste(r$Q3, collapse = ";"),
+                          Min_len = paste(r$min_len, collapse = ";"),
                           stringsAsFactors = FALSE)
     } else {
-        out <- data.frame(Isolate = i, Sum_len = NA, Read_num = NA, Depth = NA, Max_len = NA, N50 = NA, Avg_len = NA,
-                          Min_len = NA, Q3_len = NA, stringsAsFactors = FALSE)
+        out <- data.frame(Isolate = i, Sum_len = NA, Read_num = NA, Depth = NA, Max_len = NA, Avg_len = NA,
+                          Min_len = NA, stringsAsFactors = FALSE)
     }
     return(out)
 }
