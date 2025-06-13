@@ -8,7 +8,7 @@ summariseSeqkitPEReadStats(
   tsv,
   header = c("file", "format", "type", "num_seqs", "sum_len", "min_len", "avg_len",
     "max_len", "Q1", "Q2", "Q3", "sum_gap", "N50", "N50_num", "Q20_perc", "Q30_perc",
-    "AvgQual", "GC"),
+    "AvgQual", "GC", "sum_N"),
   ref_len = 5e+06,
   ext = ".fastq.gz",
   suf_R = FALSE,

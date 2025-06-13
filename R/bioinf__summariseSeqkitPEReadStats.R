@@ -11,22 +11,20 @@
 #' @return A data frame with summary statistics including sequencing depths.
 #' @author Yu Wan <wanyuac@@gmail.com>
 #' @export
-# (C) Copyright 2023 Yu Wan <wanyuac@gmail.com>
+# (C) Copyright 2023-2025 Yu Wan <wanyuac@gmail.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 4 Jan 2023; last update: 30 May 2024.
+# Release: 4 Jan 2023; last update: 13 June 2025.
 
 summariseSeqkitPEReadStats <- function(tsv,
                                        header = c("file", "format", "type", "num_seqs", "sum_len", "min_len",
                                                   "avg_len", "max_len", "Q1", "Q2", "Q3", "sum_gap", "N50",
-                                                  "N50_num", "Q20_perc", "Q30_perc", "AvgQual", "GC"),
+                                                  "N50_num", "Q20_perc", "Q30_perc", "AvgQual", "GC", "sum_N"),
                                        ref_len = 5e6,
                                        ext = ".fastq.gz",
                                        suf_R = FALSE,
                                        sort_by_name = "increasing",
                                        sort_by_depth = NULL) {
-    rs <- read.delim(file = tsv, stringsAsFactors = FALSE)
-    header[1] <- "file"  # Fix the name of the first column for the ease of coding
-    names(rs) <- header
+    rs <- read.delim(file = tsv, col.names = header, stringsAsFactors = FALSE)
     rs$file <- gsub(pattern = ext, replacement = "", x = basename(rs$file), fixed = TRUE)  # Remove filename extensions (e.g., ".fastq.gz")
     trim_len <- ifelse(suf_R, 3, 2)  # "_R[1,2]", then set suf_R = TRUE; otherwise ("_[1,2]"), set suf_R = FALSE (default)
     rs <- rs[order(rs$file, decreasing = FALSE), ]  # Ensure _1 always goes before _2 for the same isolate
