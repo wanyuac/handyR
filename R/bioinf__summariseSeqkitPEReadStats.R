@@ -3,7 +3,7 @@
 #' be generated using command 'seqkit stats --all'.
 #' @param tsv Tab-delimited output (a TSV file) from command 'seqkit stats'
 #' @param header Column names matching seqkit stats's output
-#' @param ref_len Length of the reference genome in base pairs
+#' @param ref_len Length of the reference genome in base pairs. It could be the mean or median genome size of a species.
 #' @param ext Filename extension of FASTQ files in the input TSV file. For example, '.fastq.gz' or '.fq.gz'.
 #' @param suf_R A logical value indicating whether 'R' is used in the filename suffices. For instance, suf_R = TRUE when read files are ended with '_R1.fastq.gz' and '_R2.fastq.gz'.
 #' @param sort_by_name A string with values "decreasing", "increasing (default), or NULL indicating whether the output data frame will be sorted by isolate names in a specific order. This argument overrides "sort_by_depth" if the former is not NULL.
@@ -13,7 +13,7 @@
 #' @export
 # (C) Copyright 2023-2025 Yu Wan <wanyuac@gmail.com>
 # Licensed under the Apache License, Version 2.0
-# Release: 4 Jan 2023; last update: 13 June 2025.
+# Release: 4 Jan 2023; last update: 27 June 2025.
 
 summariseSeqkitPEReadStats <- function(tsv,
                                        header = c("file", "format", "type", "num_seqs", "sum_len", "min_len",

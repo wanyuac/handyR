@@ -21,7 +21,7 @@ summariseSeqkitPEReadStats(
 
 \item{header}{Column names matching seqkit stats's output}
 
-\item{ref_len}{Length of the reference genome in base pairs}
+\item{ref_len}{Length of the reference genome in base pairs. It could be the mean or median genome size of a species.}
 
 \item{ext}{Filename extension of FASTQ files in the input TSV file. For example, '.fastq.gz' or '.fq.gz'.}
 
