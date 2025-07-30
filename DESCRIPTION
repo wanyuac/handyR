@@ -1,15 +1,15 @@
 Package: handyR
 Type: Package
 Title: Handy functions for R programming.
-Version: 0.0.8
+Version: 0.0.9
 Author: Yu Wan
-Maintainer: Yu Wan <wanyuac@126.com>
+Maintainer: Yu Wan <wanyuac@gmail.com>
 Description: This package provides functions for general R programming.
 License: Apache License, Version 2.0
 Encoding: UTF-8
 LazyData: true
 Imports:
-    ape (>= 4.1),
     phytools (>= 0.6),
-    igraph (>= 1.3)
+    igraph (>= 1.3),
+    tidyverse
 RoxygenNote: 7.3.2
