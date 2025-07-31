@@ -13,7 +13,7 @@
 
 normaliseContigDepths <- function(tsv) {
     require(tidyverse)
-    contig_stats <- read_tsv(tsv, col_names = c("Isolate", "Contig", "Length", "Depth"))
+    contig_stats <- read_tsv(tsv, col_names = c("Isolate", "Contig", "Length", "Depth"), progress = FALSE, show_col_types = FALSE)
     median_depth <- median(contig_stats$Depth)
     IQR_depth <- IQR(contig_stats$Depth)
     result <- contig_stats %>% mutate(Depth_norm = round((Depth - median_depth) / IQR_depth + 1, digits = 1))
